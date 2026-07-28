@@ -15,3 +15,6 @@ Apple has apparently patched this in IOS 18 but it still seems to work on IOS 26
 If your phone is vulnerable to the attack, you will need the following:
 
 - [ ] Raspberry Pi Pico 2W/W
+- [ ] Micro-Usb data cable
+
+Once you have all of that, 
