@@ -19,4 +19,4 @@ If your phone is vulnerable to the attack, you will need the following:
 - [ ] [Raspberry Pi Pico 2 W/WH](https://thepihut.com/search?q=pico&narrow_by=Brand%2CRaspberry+Pi%2CCategories%2C289434271939&sort_by=relevency&page=1)
 - [ ] Micro-USB data cable
 
-Once you have all of that,
+Once you have all of that, 
