@@ -48,5 +48,5 @@ Once you have all of that, download the Arduino IDE and set it up for your board
 
 ## Notes & Troubleshooting
 
-* **Phone missing digits / typing too fast?** The delay might be too fast for your phone to register. Open the code in Arduino IDE and change `delay(500);` to `delay(750);` or `delay(1000);` and upload it again.
-* **Arduino IDE not detecting the board?** Try a different cable. A lot of cheap micro-usb cables lying around only supply power and don't transfer data.
+* **No way to enter in phone password/ No keypad showing** Pair the controller first, disconnect it by unplugging the board, go to the erase menu and enter password then replug the board again and the number pad should disappear when it connects properly.
+* **Arduino IDE not detecting the board** Try a different cable. A lot of cheap micro usb cables lying around only supply power and don't transfer data.
