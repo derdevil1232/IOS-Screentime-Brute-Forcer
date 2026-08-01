@@ -1,9 +1,9 @@
 #include <KeyboardBLE.h>
 
-const int LED_PIN = LED_BUILTIN;
+const int LED = LED_BUILTIN;
 
 void setup() {
-  pinMode(LED_PIN, OUTPUT);
+  pinMode(LED, OUTPUT);
 
   // Starts serial
   Serial.begin(115200);
@@ -15,14 +15,14 @@ void setup() {
 
   // 30 second safety countdown
   for (int i = 0; i < 30; i++) {
-    digitalWrite(LED_PIN, HIGH);
+    digitalWrite(LED, HIGH);
     delay(500);
-    digitalWrite(LED_PIN, LOW);
+    digitalWrite(LED, LOW);
     delay(500);
   }
-  digitalWrite(LED_PIN, HIGH);   // solid on while sending
+  digitalWrite(LED, HIGH);
 
-  // --- Run combinations ---
+  // Run combinations
   for (int i = 0; i < 10000; i++) {
     char combo[5];
     snprintf(combo, sizeof(combo), "%04d", i);
@@ -31,13 +31,13 @@ void setup() {
     KeyboardBLE.print(combo);
     KeyboardBLE.write(KEY_RETURN);
 
-    // Mirror to PC serial (if connected)
+    // Mirror to PC serial (if itsconnected)
     Serial.println(combo);
 
     delay(500);
   }
 
-  digitalWrite(LED_PIN, LOW);    // finished
+  digitalWrite(LED, LOW);
 }
 
 void loop() {
