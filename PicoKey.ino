@@ -22,7 +22,7 @@ void setup() {
       delay(50);
     }
     Serial.println(combo);
-    delay(500);
+    delay(50);
   }
   digitalWrite(LED, LOW);
 }
