@@ -21,7 +21,6 @@ void setup() {
       KeyboardBLE.write(combo[j]);
       delay(50);
     }
-    KeyboardBLE.write(KEY_RETURN);
     Serial.println(combo);
     delay(500);
   }
