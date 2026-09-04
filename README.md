@@ -12,6 +12,8 @@ If the vulnerability is present, you should have infinite attempts at the Screen
 
 Apple has apparently patched this in iOS 18, but it still seems to work on iOS 26.4.
 
+*confirmed as working on latest ios 26.6.1*
+
 ## Getting Started
 
 If your phone is vulnerable to the attack, you will need the following:
