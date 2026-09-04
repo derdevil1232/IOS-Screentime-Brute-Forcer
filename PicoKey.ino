@@ -19,13 +19,14 @@ void setup() {
     snprintf(combo, sizeof(combo), "%04d", i);
     for (int j = 0; j < 4; j++) {
       KeyboardBLE.write(combo[j]);
-      delay(50);
+      delay(150);
     }
     Serial.println(combo);
-    delay(50);
+    delay(500);
   }
   digitalWrite(LED, LOW);
 }
+
 void loop() {
   delay(1000);
 }
