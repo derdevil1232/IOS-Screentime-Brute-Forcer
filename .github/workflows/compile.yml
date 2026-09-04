@@ -1,0 +1,38 @@
+name: Compile RP2040 Sketch
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile Arduino Sketch
+        uses: arduino/compile-sketches@v1
+        with:
+          # Target FQBN for Raspberry Pi Pico W
+          fqbn: rp2040:rp2040:rpipicow
+          platforms: |
+            - name: "rp2040:rp2040"
+              source-url: "https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json"
+          # Path to your sketch directory containing the .ino file
+          sketch-paths: |
+            - .
+          # Uncomment if KeyboardBLE or other dependencies are not bundled
+          # libraries: |
+          #   - name: KeyboardBLE
+          cli-compile-flags: |
+            - --export-binaries
+
+      - name: Upload Compiled UF2 Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: pico-uf2-binary
+          path: build/**/rp2040.rp2040.rpipicow/*.uf2
