@@ -1,0 +1,49 @@
+name: Release RP2040 Firmware
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on tags like v1.0.0, v0.2.1
+
+permissions:
+  contents: write # Required to create releases and upload assets
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile Arduino Sketch
+        uses: arduino/compile-sketches@v1
+        with:
+          fqbn: rp2040:rp2040:rpipicow
+          platforms: |
+            - name: "rp2040:rp2040"
+              source-url: "https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json"
+          sketch-paths: |
+            - .
+          cli-compile-flags: |
+            - --export-binaries
+
+      - name: Locate and Stage UF2 Binary
+        run: |
+          mkdir -p release-assets
+          # Find the exported .uf2 binary and copy it with a clean filename
+          UF2_FILE=$(find . -name "*.uf2" -not -path "*/release-assets/*" | head -n 1)
+          if [ -z "$UF2_FILE" ]; then
+            echo "Error: .uf2 binary not found!"
+            exit 1
+          fi
+          echo "Found: $UF2_FILE"
+          cp "$UF2_FILE" release-assets/firmware-${{ github.ref_name }}.uf2
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/*.uf2
+          generate_release_notes: true
+          draft: false
+          prerelease: false
