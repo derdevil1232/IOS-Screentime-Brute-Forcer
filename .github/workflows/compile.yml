@@ -18,7 +18,7 @@ jobs:
         uses: arduino/compile-sketches@v1
         with:
           # Target FQBN for Raspberry Pi Pico W
-          fqbn: rp2040:rp2040:rpipicow
+          fqbn: rp2040:rp2040:rpipicow:ipbtstack=ipv4btcble
           platforms: |
             - name: "rp2040:rp2040"
               source-url: "https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json"
